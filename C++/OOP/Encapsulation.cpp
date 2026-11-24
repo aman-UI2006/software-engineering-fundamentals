@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -15,6 +16,9 @@ public:
     void deposit(long long amount) {
         if (amount <= 0) {
             throw std::invalid_argument("Deposit must be positive");
+        }
+        if (amount > std::numeric_limits<long long>::max() - balance_) {
+            throw std::overflow_error("Balance would overflow");
         }
         balance_ += amount;
     }
