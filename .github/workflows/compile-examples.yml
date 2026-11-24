@@ -1,0 +1,57 @@
+name: Compile Java and C++ examples
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  java:
+    name: Compile and run Java examples
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Compile and run each Java example
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' source; do
+            directory="$(dirname "$source")"
+            class_name="$(basename "$source" .java)"
+            echo "Compiling $source"
+            javac "$source"
+            echo "Running $class_name"
+            java -cp "$directory" "$class_name"
+          done < <(find Java -name '*.java' -print0)
+
+  cpp:
+    name: Compile and run C++ examples
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up C++ compiler
+        run: sudo apt-get update && sudo apt-get install -y g++
+
+      - name: Compile and run each C++ example
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' source; do
+            executable="$RUNNER_TEMP/$(basename "$source" .cpp)"
+            echo "Compiling $source"
+            g++ -std=c++17 -pthread -Wall -Wextra -pedantic "$source" -o "$executable"
+            echo "Running $(basename "$source")"
+            "$executable"
+          done < <(find 'C++' -name '*.cpp' -print0)
