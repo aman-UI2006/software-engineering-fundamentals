@@ -1,0 +1,22 @@
+# Java build output
+*.class
+out/
+target/
+
+# C/C++ build output
+*.o
+*.obj
+*.exe
+*.out
+build/
+cmake-build-*/
+
+# IDE/editor
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Temporary output
+*.log
+*.tmp
