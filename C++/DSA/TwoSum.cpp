@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -9,10 +10,14 @@ std::pair<int, int> two_sum(const std::vector<int>& nums, int target) {
     std::unordered_map<int, int> index_by_value;
 
     for (int i = 0; i < static_cast<int>(nums.size()); ++i) {
-        const int complement = target - nums[i];
-        const auto found = index_by_value.find(complement);
-        if (found != index_by_value.end()) {
-            return {found->second, i};
+        // Promote before subtracting to avoid signed integer overflow.
+        const long long complement = static_cast<long long>(target) - nums[i];
+        if (complement >= std::numeric_limits<int>::min()
+                && complement <= std::numeric_limits<int>::max()) {
+            const auto found = index_by_value.find(static_cast<int>(complement));
+            if (found != index_by_value.end()) {
+                return {found->second, i};
+            }
         }
         index_by_value.emplace(nums[i], i);
     }
