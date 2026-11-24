@@ -1,67 +1,34 @@
 # Software Engineering Fundamentals
 
-A practical learning portfolio for Java and C++: object-oriented programming, core language features, standard libraries, concurrency, data structures, and algorithms.
+A practical Java and C++ learning repository covering OOP, collections, data structures and algorithms, concurrency, STL, memory ownership, and design principles.
 
-The aim is to build a reliable reference of small, understandable, runnable examples—not simply collect code. Examples should be compiled and tested before being described as verified.
+## Modules
+- **Java:** OOP, Collections Framework, Multithreading, exceptions, and DSA.
+- **C++:** OOP, STL, exceptions, multithreading, DSA, and memory ownership.
+- **DSA:** 30 curated problems implemented in both Java and C++.
+- **Engineering practice:** focused examples, complexity notes, documented assumptions, and GitHub Actions compilation checks.
 
-## Repository structure
-
-```text
-Java/
-  OOP/
-  Collections/
-  ExceptionHandling/
-  Multithreading/
-  DSA/
-C++/
-  OOP/
-  STL/
-  ExceptionHandling/
-  Multithreading/
-  DSA/
-```
-
-## Topics
-
-| Area | Java | C++ |
-|---|---|---|
-| OOP | Classes, encapsulation, inheritance, polymorphism, interfaces | Classes, encapsulation, inheritance, virtual functions, RAII |
-| Collections / STL | List, Set, Map, Queue, generics, comparators | Vector, map, set, unordered containers, iterators, algorithms |
-| Exceptions | Checked/unchecked, custom exceptions, try-with-resources | try/throw/catch, standard/custom exceptions, RAII |
-| Multithreading | Thread, Runnable, synchronization, executors | std::thread, mutex, condition_variable, future |
-| DSA | Arrays, strings, hashing, trees, graphs, DP | Arrays, strings, hashing, trees, graphs, DP |
-
-## Compile and run
-
-### Java
-Requires a JDK (Java 17 or later recommended).
-
+## Quick start (JDK 17+, C++17)
 ```bash
-javac Example.java
-java Example
+javac Java/DSA/DsaPracticeSet30.java
+java -cp Java/DSA DsaPracticeSet30
+
+g++ -std=c++17 -Wall -Wextra -pedantic C++/DSA/dsa_practice_set_30.cpp -o /tmp/dsa
+/tmp/dsa
 ```
 
-### C++
-Examples use C++17.
-
+## Other examples
 ```bash
-g++ -std=c++17 -Wall -Wextra -pedantic Example.cpp -o example
-./example
+javac Java/OOP/OopConcepts.java && java -cp Java/OOP OopConcepts
+javac Java/Collections/CollectionsPractice.java && java -cp Java/Collections CollectionsPractice
+javac Java/Multithreading/ConcurrencyPractice.java && java -cp Java/Multithreading ConcurrencyPractice
+g++ -std=c++17 -Wall -Wextra -pedantic C++/STL/STLPractice.cpp -o /tmp/stl && /tmp/stl
 ```
 
-## Contribution and quality conventions
+## Learning path
+Follow [ROADMAP.md](ROADMAP.md). [DSA/README.md](DSA/README.md) lists the 30 exercises, patterns, complexity, and assumptions.
 
-For each new example:
-1. Explain the concept and the problem it solves.
-2. Keep each example focused and readable.
-3. Include edge cases and expected output where useful.
-4. For DSA, explain the approach and time/space complexity.
-5. Compile and run the example before marking it verified.
+## Quality conventions
+Keep examples runnable and focused. State assumptions and complexity. Test edge cases. Prefer RAII and standard abstractions in C++, and executors/concurrency utilities in Java. Never commit credentials, build output, IDE state, or personal data. CI is a safety net, not proof of correctness.
 
-## Learning status
-
-This repository is being built incrementally. A topic folder or example is not a claim that the entire topic has been mastered.
-
-## Author
-
-[aman-UI2006](https://github.com/aman-UI2006)
+A sample implementation is not evidence of mastery; use the roadmap exit tasks to assess understanding.
