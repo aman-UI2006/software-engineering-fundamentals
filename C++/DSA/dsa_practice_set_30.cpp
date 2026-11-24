@@ -1,6 +1,8 @@
 #include <algorithm>
 #include <array>
 #include <climits>
+#include <cctype>
+#include <stdexcept>
 #include <functional>
 #include <iostream>
 #include <map>
